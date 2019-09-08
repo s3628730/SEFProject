@@ -1,0 +1,29 @@
+import java.util.Scanner;
+public class launch {
+
+	public static void main(String[] args) {
+		Boolean loop = true;
+		Scanner player = new Scanner(System.in);
+		Scanner server = new Scanner(System.in);
+		
+		System.out.println("Welcome to the Multiplayer Pacman Game");
+		System.out.println("Before we get started. Could you please tell us your name:");
+		String userName = player.nextLine();
+		System.out.println("Welcome " + userName + ". Would you like to Host or Join a Server?");
+		String serverOption = server.nextLine();
+		
+		while(loop == true)
+		if(serverOption == "Host") {
+			loop = false;
+			//Method
+		}
+		else if(serverOption == "Join") {
+			//Method
+			loop = false;
+		}
+		else {
+			loop = true;
+		}
+	}
+
+}
