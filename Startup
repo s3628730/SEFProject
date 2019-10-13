@@ -1,29 +1,63 @@
 import java.util.Scanner;
+import java.util.regex.*;
+
 public class launch {
 
 	public static void main(String[] args) {
-		Boolean loop = true;
+
 		Scanner player = new Scanner(System.in);
 		Scanner server = new Scanner(System.in);
+		Scanner address = new Scanner(System.in);
 		
 		System.out.println("Welcome to the Multiplayer Pacman Game");
 		System.out.println("Before we get started. Could you please tell us your name:");
 		String userName = player.nextLine();
+
+		String serverOption = null;
+
 		System.out.println("Welcome " + userName + ". Would you like to Host or Join a Server?");
-		String serverOption = server.nextLine();
-		
-		while(loop == true)
-		if(serverOption == "Host") {
-			loop = false;
-			//Method
+		while (serverOption == null) {
+			serverOption = getServerOption(player.nextLine());
 		}
-		else if(serverOption == "Join") {
-			//Method
-			loop = false;
+
+		String ipAddress = null;
+		
+		while (serverOption == "join" && ipAddress == null) {
+			System.out.println("Please input the host's IP address");
+			ipAddress = validateIPaddress(address.nextLine());
+		}
+		System.out.println(ipAddress);
+		
+		
+			
+	}
+
+	static String getServerOption(String input) {
+		if (input.toLowerCase().equals("join")) {
+			return "join";
+		} else if (input.toLowerCase().equals("host")) {
+			return "host";
+		} else {
+			System.out.println("Please try again. Would you like to Join or Host a server?");
+			return null;
+		}
+
+	}
+
+	static String validateIPaddress(String input) {
+		String regex = "\\b((25[0–5]|2[0–4]\\d|[01]?\\d\\d?)(\\.)){3}(25[0–5]|2[0–4]\\d|[01]?\\d\\d?)\\b";
+		if (Pattern.matches(regex, input)) {
+			System.out.println("True");
+			return input;
 		}
 		else {
-			loop = true;
+			System.out.println("False");
+			return null;
 		}
+		
+
 	}
 
 }
+
+
